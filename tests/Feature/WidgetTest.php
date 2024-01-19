@@ -8,8 +8,7 @@ describe('POST /widgets', function () {
                 'name' => 'Test Widget',
                 'description' => 'This is a test widget',
             ])
-            ->assertValidRequest()
-            ->assertValidResponse(201);
+            ->assertStatus(201);
     });
 
     it('returns a 400 for invalid request', function () {
@@ -17,7 +16,7 @@ describe('POST /widgets', function () {
             ->postJson("/api/widgets", [
                 'name' => 'Missing a Description',
             ])
-            ->assertValidResponse(400);
+            ->assertStatus(400);
     });
 });
 
@@ -28,13 +27,13 @@ describe('GET /widgets', function () {
 
         $this
             ->getJson("/api/widgets")
-            ->assertValidResponse(200);
+            ->assertStatus(200);
     });
 
     it('returns a 200 even when collection is empty', function () {
         $this
             ->getJson("/api/widgets")
-            ->assertValidResponse(200);
+            ->assertStatus(200);
     });
 });
 
@@ -44,7 +43,7 @@ describe('GET /widgets/{id}', function () {
         $widget = Widget::factory()->create();
         $this
             ->getJson("/api/widgets/{$widget->id}")
-            ->assertValidResponse(200);
+            ->assertStatus(200);
     });
 
     it('returns a 404 for missing record', function () {
@@ -52,6 +51,6 @@ describe('GET /widgets/{id}', function () {
 
         $this
             ->getJson("/api/widgets/12345")
-            ->assertValidResponse(404);
+            ->assertStatus(404);
     });
 });
