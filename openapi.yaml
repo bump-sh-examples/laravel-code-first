@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  title: 'My Widget API'
+  version: 1.0.0
+paths:
+  /api/:
+    get:
+      description: 'The home resource shows you what can be done with the API.'
+      operationId: 14776015d6f5a2e7b4d4eb64c7ae2f1f
+      responses:
+        '200':
+          description: OK
+  /api/widgets:
+    get:
+      description: 'Display a collection of widgets.'
+      operationId: 3f6fb451248ef3559606c43b021abfcd
+      responses:
+        '200':
+          description: OK
+    post:
+      description: 'Created a new widget.'
+      operationId: 87fc629a5099009546b979bfbcb47dd2
+      responses:
+        '201':
+          description: Created
+  '/api/widgets/{id}':
+    get:
+      description: 'Display the specified widget.'
+      operationId: 12dd67833d3a2d1036437661a4cd8f07
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetResource'
+        '404':
+          description: 'Not found'
+    put:
+      description: 'Update the specified widget by replacing all properties.'
+      operationId: 256916253053a8ae669607bc6cc61e63
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: 'Not found'
+    delete:
+      description: 'Delete the specified widget entirely.'
+      operationId: b1915b538ae8a9a211fe476ed8219673
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: 'Not found'
+components:
+  schemas:
+    WidgetResource:
+      properties:
+        id:
+          description: 'Unique auto-incrementing ID of the Widget.'
+          type: integer
+          readOnly: true
+        name:
+          description: 'The name of a widget in English.'
+          type: string
+        description:
+          description: 'Optional description of what the widget does, and how it works.'
+          type: string
+          nullable: true
+        created_at:
+          description: 'Date the widget was created, in ISO 8601 date time.'
+          type: string
+          readOnly: true
+          example: '2024-01-20T09:15:28Z'
+        updated_at:
+          description: ''
+          type: string
+          readOnly: true
+      type: object

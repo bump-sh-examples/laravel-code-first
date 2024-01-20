@@ -1,0 +1,50 @@
+parameters:
+  - name: widget
+    in: path
+    description: The unique identifier of a widget.
+    required: true
+    schema:
+      type: string
+
+get:
+  summary: Get widget
+  operationId: get-widget
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../components/schema/wrapper.yaml"
+              - type: object
+                properties:
+                  data:
+                    $ref: "../components/schema/widget.yaml"
+    '404':
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+
+put:
+  summary: Update widget
+  operationId: update-widget
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            additionalProperties: false
+            allOf:
+              - $ref: "../components/schema/wrapper.yaml"
+              - properties:
+                  data:
+                    $ref: "../components/schema/widget.yaml"

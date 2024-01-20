@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse as Response;
+use OpenApi\Attributes as OA;
+
+#[OA\Info(title: "My Widget API", version: "1.0.0")]
 
 class HomeController extends Controller
 {
+    #[OA\Get(path: '/api/', description: 'The home resource shows you what can be done with the API.')]
+    #[OA\Response(response: Response::HTTP_OK, description: 'OK')]
     public function __invoke(): Response
     {
         return response()->json(
