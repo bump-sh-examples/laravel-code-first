@@ -20,3 +20,8 @@ cat openapi.yaml
 ```
 
 Preview how the API reference docs look [on Bump.sh](https://bump.sh/bump-examples/hub/code-samples/doc/laravel-code-first).
+
+## License
+
+The contents of this repository are licensed under [CC BY-NC-SA
+  4.0](./LICENSE_CC-BY-NC-SA-4.0).
